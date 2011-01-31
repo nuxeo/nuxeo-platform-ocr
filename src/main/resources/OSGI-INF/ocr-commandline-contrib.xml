@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.ecm.platform.ocr.commandexecutor">
+
+  <require>org.nuxeo.ecm.platform.commandline.executor.service.defaultContrib</require>
+  <extension target="org.nuxeo.ecm.platform.commandline.executor.service.CommandLineExecutorComponent"
+    point="command">
+
+    <command name="olena_content_in_doc" enabled="true">
+      <commandLine>content_in_doc</commandLine>
+      <parameterString>#{sourceFilePath} "#{targetFilePath}"</parameterString>
+      <installationDirective>You need to install Olena's content_in_doc command.</installationDirective>
+    </command>
+
+  </extension>
+
+</component>

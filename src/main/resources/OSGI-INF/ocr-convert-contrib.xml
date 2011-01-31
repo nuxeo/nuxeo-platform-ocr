@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.ecm.platform.ocr.convert">
+
+  <extension target="org.nuxeo.ecm.core.convert.service.ConversionServiceImpl"
+    point="converter">
+
+    <converter name="olena_content_in_doc" class="org.nuxeo.ecm.platform.ocr.converter.OcrConverter">
+      <sourceMimeType>image/jpeg</sourceMimeType>
+      <sourceMimeType>image/png</sourceMimeType>
+      <sourceMimeType>image/gif</sourceMimeType>
+      <sourceMimeType>image/tiff</sourceMimeType>
+      <sourceMimeType>image/bmp</sourceMimeType>
+      <destinationMimeType>application/xml</destinationMimeType>
+      <parameters>
+        <parameter name="CommandLineName">olena_content_in_doc</parameter>
+      </parameters>
+    </converter>
+
+  </extension>
+
+</component>

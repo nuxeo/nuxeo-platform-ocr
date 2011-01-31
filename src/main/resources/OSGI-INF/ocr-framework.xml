@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.ecm.platform.ocr.service.OcrService">
+  <implementation
+    class="org.nuxeo.ecm.platform.ocr.service.impl.OcrServiceImpl" />
+
+  <documentation>
+    Service that wraps the Olena commandline tool that is
+    able to extract the structure of digitized documents in image
+    formats and extract the embedded text using tesseract.
+    @author Olivier  Grisel (ogrisel@nuxeo.com)
+  </documentation>
+
+  <service>
+    <provide interface="org.nuxeo.ecm.platform.ocr.service.OcrService" />
+  </service>
+</component>

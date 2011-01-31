@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 1
+Bundle-Name: Nuxeo ECM OCR Test
+Bundle-SymbolicName: org.nuxeo.ecm.platform.ocr.test;singleton:=true
+Bundle-Vendor: Nuxeo
+Require-Bundle: org.nuxeo.ecm.platform.annotations.api
+Nuxeo-Component: OSGI-INF/annotations-relations-contrib.xml

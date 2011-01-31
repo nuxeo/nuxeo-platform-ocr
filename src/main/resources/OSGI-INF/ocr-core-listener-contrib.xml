@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.ecm.platform.ocr.listener" version="1.0.0">
+
+  <extension target="org.nuxeo.ecm.core.event.EventServiceComponent"
+    point="listener">
+
+    <documentation>
+      Sample core event listeners that reacts to document
+      related events and launch OCR analysis.
+    </documentation>
+
+    <listener name="ocrAnnotationAyncListener" async="true"
+      postCommit="true"
+      class="org.nuxeo.ecm.platform.ocr.listener.OcrImageAnnotationAsyncListener"
+      priority="100">
+    </listener>
+
+  </extension>
+
+</component>
