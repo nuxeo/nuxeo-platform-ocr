@@ -61,7 +61,7 @@ tomcat package).
 To test the addon, find a high resolution picture of a digitized newspaper or
 other text document such as:
 
-  http://www.google.com/images?as_q=magazine+article&biw=1280
+  <http://www.google.com/images?as_q=magazine+article&biw=1280>
 
 In Nuxeo DM or DAM import the picture as a new File or Picture
 document wait approximately 5s (the OCR is working asynchronously in
