@@ -209,8 +209,15 @@ public class OcrServiceImpl implements OcrService {
                 StringBuilder sb = new StringBuilder();
                 for (int k = 0; k < textNodes.getLength(); k++) {
                     Attr textAttr = (Attr) textNodes.item(k);
-                    sb.append(textAttr.getValue());
-                    sb.append(" ");
+                    String line = textAttr.getValue();
+                    if (line.endsWith("-") || line.endsWith("\u2010")
+                            || line.endsWith("\u2011")) {
+                        // special handling for hyphens
+                        sb.append(line.substring(0, line.length() - 1));
+                    } else {
+                        sb.append(line);
+                        sb.append(" ");
+                    }
                 }
                 String paragraph = sb.toString().trim();
                 if (!paragraph.isEmpty()) {
