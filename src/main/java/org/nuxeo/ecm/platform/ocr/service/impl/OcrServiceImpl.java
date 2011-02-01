@@ -22,6 +22,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -58,6 +60,10 @@ import org.xml.sax.SAXException;
 public class OcrServiceImpl implements OcrService {
 
     public static final String OLENA_CONVERTER_NAME = "olena_content_in_doc";
+
+    public static final Pattern TESSERACT_GIBBERISH = Pattern.compile(//
+    "[\\\\,'\u2019\u2018\"\u201C \u201D`&\u00A7@~.:;!?_%"
+            + "\u00A5\u00A3\u20AC\u00A2\u00B0*=<>\u00BB\\-]");
 
     private static final Log log = LogFactory.getLog(OcrServiceImpl.class);
 
@@ -201,7 +207,6 @@ public class OcrServiceImpl implements OcrService {
                 }
                 TextRegion textRegion = new TextRegion(topLeftX, topLeftY,
                         bottomRightX, bottomRightY);
-                textRegions.add(textRegion);
 
                 NodeList textNodes = (NodeList) xpath.evaluate("line/@text",
                         textRegionNode, XPathConstants.NODESET);
@@ -210,6 +215,7 @@ public class OcrServiceImpl implements OcrService {
                 for (int k = 0; k < textNodes.getLength(); k++) {
                     Attr textAttr = (Attr) textNodes.item(k);
                     String line = textAttr.getValue();
+
                     if (line.endsWith("-") || line.endsWith("\u2010")
                             || line.endsWith("\u2011")) {
                         // special handling for hyphens
@@ -220,9 +226,18 @@ public class OcrServiceImpl implements OcrService {
                     }
                 }
                 String paragraph = sb.toString().trim();
+                // ignore empty paragraphs
                 if (!paragraph.isEmpty()) {
-                    // ignore empty paragraphs
-                    textRegion.paragraphs.add(paragraph);
+                    Matcher matcher = TESSERACT_GIBBERISH.matcher(paragraph);
+                    String cleaned = matcher.replaceAll("");
+                    if (cleaned.length() > 0.5 * paragraph.length()) {
+                        // less than 50% of non-text chars, this is most likely
+                        // NOT an artifact of the OCR, keep the paragraph
+                        textRegion.paragraphs.add(paragraph);
+                    }
+                }
+                if (!textRegion.paragraphs.isEmpty()) {
+                    textRegions.add(textRegion);
                 }
             }
 
