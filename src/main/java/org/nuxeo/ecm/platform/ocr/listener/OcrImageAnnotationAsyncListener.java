@@ -98,7 +98,7 @@ public class OcrImageAnnotationAsyncListener implements PostCommitEventListener 
             if (ctx instanceof DocumentEventContext) {
                 DocumentEventContext docCtx = (DocumentEventContext) ctx;
                 DocumentModel doc = docCtx.getSourceDocument();
-                if (doc != null) {
+                if (doc != null && !doc.isImmutable()) {
                     ScopedMap contextData = doc.getContextData();
                     contextData.putScopedValue(ScopeType.REQUEST,
                             ALLREADY_OCRED_FLAG, Boolean.TRUE);
