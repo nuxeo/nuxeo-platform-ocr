@@ -7,6 +7,12 @@ Olena's development and support for document analysis was funded as part of the
 Scribo (http://scribo.ws) R&D project. This work is still under progress (as of
 january 2011) and hence require some manual non trivial build setup.
 
+*Edit*: the Olena 2.0 release is out with the scribo extensions included.
+The build instruction need to be updated to use this stable release instead
+of the development version:
+
+  <http://www.lrde.epita.fr/cgi-bin/twiki/view/Olena/Olena200>
+
 
 ## Building the olena command line tool used by the Nuxeo Addon
 
