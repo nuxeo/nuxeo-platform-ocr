@@ -3,13 +3,12 @@
 This addon need the Olena command line utility to analyse digital document
 available in common picture formats (e.g. png, tif, gif, jpeg, ...).
 
-Olena's development and support for document analysis was funded as part of the
-Scribo (http://scribo.ws) R&D project. This work is still under progress (as of
-january 2011) and hence require some manual non trivial build setup.
+Olena's development and support for document analysis as well as the
+integration in Nuxeo through this addon was funded as part of the
+Scribo (http://scribo.ws) R&D project.
 
-*Edit*: the Olena 2.0 release is out with the scribo extensions included.
-The build instruction need to be updated to use this stable release instead
-of the development version:
+Olena 2.0 and Tesseract 3 are still not yet packaged by default in most
+Linux distributions hence some manual build steps are required.
 
   <http://www.lrde.epita.fr/cgi-bin/twiki/view/Olena/Olena200>
 
