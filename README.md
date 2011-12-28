@@ -34,9 +34,9 @@ Here are some instruction to build it under ubuntu & debian linux.
 
 3- Build Olena itself:
 
-    $ wget http://www.lrde.epita.fr/dload/olena/snapshots/next-build-test/olena-1.0a-snapshot-next-build-test.tar.bz2
-    $ tar jxvf olena-1.0a-*.tar.bz2
-    $ cd olena-1.0a/
+    $ wget http://www.lrde.epita.fr/dload/olena/2.0/olena-2.0.tar.bz2
+    $ tar jxvf olena-*.tar.bz2
+    $ cd olena-2.0/
     $ mkdir _build
     $ cd _build
     $ ../configure && make
@@ -45,7 +45,7 @@ Here are some instruction to build it under ubuntu & debian linux.
 
 You should then have a program `content_in_doc`; you can test it with:
 
-  $ ./content_in_doc /path/to/a/picture.png /path/to/result.xml
+    $ ./content_in_doc /path/to/a/picture.png /path/to/result.xml
 
 Install the `content_in_doc` program somewhere in your system path so
 that Nuxeo can pick to up to analyze image documents and extract text
