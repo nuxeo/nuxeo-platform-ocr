@@ -12,6 +12,16 @@ Linux distributions hence some manual build steps are required.
 
   <http://www.lrde.epita.fr/cgi-bin/twiki/view/Olena/Olena200>
 
+## Notes
+
+* The quality of the extraction is good only for high resolution
+  pictures. For instance photos of a newspaper taken from a mobile
+  phone will likely yield unusable output.
+
+* Supporting for PDF files would require an additional step to use
+  Apache PDFBox to extract the sizeable pictures from the PDF file to
+  pass to Olena / Tesseract. This is not implemented in the current
+  version.
 
 ## Building the olena command line tool used by the Nuxeo Addon
 
