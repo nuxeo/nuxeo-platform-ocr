@@ -18,7 +18,7 @@ Linux distributions hence some manual build steps are required.
   pictures. For instance photos of a newspaper taken from a mobile
   phone will likely yield unusable output.
 
-* Supporting for PDF files would require an additional step to use
+* Supporting PDF files would require an additional step to use
   Apache PDFBox to extract the sizeable pictures from the PDF file to
   pass to Olena / Tesseract. This is not implemented in the current
   version.
