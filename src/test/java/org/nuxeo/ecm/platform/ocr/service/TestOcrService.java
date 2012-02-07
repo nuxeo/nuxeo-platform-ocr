@@ -48,11 +48,14 @@ public class TestOcrService extends NXRuntimeTestCase {
 
     public void testServiceEnabled() throws Exception {
         if (!ocrService.isEnabled()) {
-            log.warn("olena commandline is not available: skipping test");
+            log.warn("Olena commandline is not available: skipping tests");
         }
     }
 
     public void testExtractLenaStructure() throws Exception {
+        if (!ocrService.isEnabled()) {
+            return;
+        }
         InputStream imageStream = getClass().getResourceAsStream(
                 "/wikilena.png");
         assertNotNull(imageStream);
@@ -111,6 +114,9 @@ public class TestOcrService extends NXRuntimeTestCase {
     }
 
     public void testExtractLenaText() throws Exception {
+        if (!ocrService.isEnabled()) {
+            return;
+        }
         InputStream imageStream = getClass().getResourceAsStream(
                 "/wikilena.png");
         assertNotNull(imageStream);
@@ -123,5 +129,4 @@ public class TestOcrService extends NXRuntimeTestCase {
             log.warn("olena commandline is not available: skipping test");
         }
     }
-
 }
