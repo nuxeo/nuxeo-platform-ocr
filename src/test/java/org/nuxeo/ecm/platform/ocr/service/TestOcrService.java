@@ -16,11 +16,17 @@
  */
 package org.nuxeo.ecm.platform.ocr.service;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import java.io.InputStream;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.junit.Test;
 import org.nuxeo.ecm.core.api.Blob;
 import org.nuxeo.ecm.core.api.IdRef;
 import org.nuxeo.ecm.core.api.impl.DocumentLocationImpl;
@@ -29,7 +35,6 @@ import org.nuxeo.ecm.platform.commandline.executor.service.CommandLineExecutorCo
 import org.nuxeo.ecm.platform.ocr.annotation.ImageAnnotationHelper;
 import org.nuxeo.runtime.api.Framework;
 import org.nuxeo.runtime.test.NXRuntimeTestCase;
-
 public class TestOcrService extends NXRuntimeTestCase {
 
     private static final Log log = LogFactory.getLog(CommandLineExecutorComponent.class);
@@ -37,6 +42,7 @@ public class TestOcrService extends NXRuntimeTestCase {
     OcrService ocrService;
 
     @Override
+    @Test
     public void setUp() throws Exception {
         super.setUp();
         deployBundle("org.nuxeo.ecm.core.convert");
@@ -45,13 +51,13 @@ public class TestOcrService extends NXRuntimeTestCase {
         ocrService = Framework.getService(OcrService.class);
         assertNotNull(ocrService);
     }
-
+    @Test
     public void testServiceEnabled() throws Exception {
         if (!ocrService.isEnabled()) {
             log.warn("Olena commandline is not available: skipping tests");
         }
     }
-
+    @Test
     public void testExtractLenaStructure() throws Exception {
         if (!ocrService.isEnabled()) {
             return;
@@ -68,7 +74,7 @@ public class TestOcrService extends NXRuntimeTestCase {
             assertFalse(textRegions.isEmpty());
             assertEquals(271, textRegions.get(0).topLeftX);
             assertEquals(20, textRegions.get(0).topLeftY);
-            assertEquals(382, textRegions.get(0).bottomRightX);
+            assertEquals(311, textRegions.get(0).bottomRightX);
             assertEquals(49, textRegions.get(0).bottomRightY);
             assertFalse("No paragraph found in region",
                     textRegions.get(0).paragraphs.isEmpty());
@@ -84,7 +90,7 @@ public class TestOcrService extends NXRuntimeTestCase {
 
             // integrity checks on the structure of the image regions
             List<ImageRegion> imageRegions = structure.getImageRegions();
-            assertEquals(4, imageRegions.size());
+            assertEquals(2, imageRegions.size());
             for (ImageRegion image : imageRegions) {
                 assertTrue(String.format("topLeftX=%d >= bottomRightX=%d",
                         image.topLeftX, image.bottomRightX),
@@ -112,7 +118,7 @@ public class TestOcrService extends NXRuntimeTestCase {
             log.warn("olena commandline is not available: skipping test");
         }
     }
-
+    @Test
     public void testExtractLenaText() throws Exception {
         if (!ocrService.isEnabled()) {
             return;
