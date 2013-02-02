@@ -92,6 +92,14 @@
       <artifactId>nuxeo-platform-relations-jena-plugin</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+    	<groupId>junit</groupId>
+    	<artifactId>junit</artifactId>
+    </dependency>
+    <dependency>
+    	<groupId>org.jmock</groupId>
+    	<artifactId>jmock-junit4</artifactId>
+    </dependency>
   </dependencies>
 
   <repositories>

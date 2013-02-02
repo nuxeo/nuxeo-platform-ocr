@@ -163,16 +163,16 @@ public class OcrServiceImpl implements OcrService {
             builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document document = builder.parse(xmlStream);
             XPath xpath = XPathFactory.newInstance().newXPath();
-
+           
             // iterate over all the text regions to extract the text content and
             // the global position of the region
             NodeList textRegionNodes = (NodeList) xpath.evaluate(
-                    "//text_region", document, XPathConstants.NODESET);
+                    "//TextRegion", document, XPathConstants.NODESET);
             for (int i = 0; i < textRegionNodes.getLength(); i++) {
 
                 Node textRegionNode = textRegionNodes.item(i);
                 NodeList xcoordAttrs = (NodeList) xpath.evaluate(
-                        "coords/point/@x", textRegionNode,
+                        "Coords/Point/@x", textRegionNode,
                         XPathConstants.NODESET);
                 int topLeftX = -1;
                 int bottomRightX = -1;
@@ -187,7 +187,7 @@ public class OcrServiceImpl implements OcrService {
                 }
 
                 NodeList ycoordAttrs = (NodeList) xpath.evaluate(
-                        "coords/point/@y", textRegionNode,
+                        "Coords/Point/@y", textRegionNode,
                         XPathConstants.NODESET);
                 int topLeftY = -1;
                 int bottomRightY = -1;
@@ -208,7 +208,7 @@ public class OcrServiceImpl implements OcrService {
                 TextRegion textRegion = new TextRegion(topLeftX, topLeftY,
                         bottomRightX, bottomRightY);
 
-                NodeList textNodes = (NodeList) xpath.evaluate("line/@text",
+                NodeList textNodes = (NodeList) xpath.evaluate("Line/@text",
                         textRegionNode, XPathConstants.NODESET);
 
                 StringBuilder sb = new StringBuilder();
@@ -244,12 +244,12 @@ public class OcrServiceImpl implements OcrService {
             // iterate over all the image regions to extract their global
             // position along with any embedded text
             NodeList imageRegionNodes = (NodeList) xpath.evaluate(
-                    "//image_region", document, XPathConstants.NODESET);
+                    "//ImageRegion", document, XPathConstants.NODESET);
             for (int i = 0; i < imageRegionNodes.getLength(); i++) {
 
                 Node imageRegionNode = imageRegionNodes.item(i);
                 NodeList xcoordAttrs = (NodeList) xpath.evaluate(
-                        "coords/point/@x", imageRegionNode,
+                        "Coords/Point/@x", imageRegionNode,
                         XPathConstants.NODESET);
                 int topLeftX = -1;
                 int bottomRightX = -1;
@@ -264,7 +264,7 @@ public class OcrServiceImpl implements OcrService {
                 }
 
                 NodeList ycoordAttrs = (NodeList) xpath.evaluate(
-                        "coords/point/@y", imageRegionNode,
+                        "Coords/Point/@y", imageRegionNode,
                         XPathConstants.NODESET);
                 int topLeftY = -1;
                 int bottomRightY = -1;
