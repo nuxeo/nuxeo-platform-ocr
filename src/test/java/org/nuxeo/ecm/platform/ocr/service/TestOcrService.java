@@ -26,6 +26,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.junit.Test;
 import org.nuxeo.ecm.core.api.Blob;
 import org.nuxeo.ecm.core.api.IdRef;
 import org.nuxeo.ecm.core.api.impl.DocumentLocationImpl;
@@ -51,12 +52,14 @@ public class TestOcrService extends NXRuntimeTestCase {
         assertNotNull(ocrService);
     }
 
+    @Test
     public void testServiceEnabled() throws Exception {
         if (!ocrService.isEnabled()) {
             log.warn("Olena commandline is not available: skipping tests");
         }
     }
 
+    @Test
     public void testExtractLenaStructure() throws Exception {
         if (!ocrService.isEnabled()) {
             return;
@@ -89,7 +92,7 @@ public class TestOcrService extends NXRuntimeTestCase {
 
             // integrity checks on the structure of the image regions
             List<ImageRegion> imageRegions = structure.getImageRegions();
-            assertEquals(4, imageRegions.size());
+            assertEquals(2, imageRegions.size());
             for (ImageRegion image : imageRegions) {
                 assertTrue(String.format("topLeftX=%d >= bottomRightX=%d",
                         image.topLeftX, image.bottomRightX),
@@ -118,6 +121,7 @@ public class TestOcrService extends NXRuntimeTestCase {
         }
     }
 
+    @Test
     public void testExtractLenaText() throws Exception {
         if (!ocrService.isEnabled()) {
             return;
